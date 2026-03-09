@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>U Schwarzů – Restaurace & Pizzerie | Brno-Řečkovice</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #f5f0e8;
+    --dark: #1a1410;
+    --brown: #3d2b1f;
+    --amber: #c8862a;
+    --red: #a8331a;
+    --warm-gray: #8a7e74;
+    --light-cream: #faf7f2;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 4rem;
+    background: rgba(26, 20, 16, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(200, 134, 42, 0.25);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--amber);
+    letter-spacing: 0.02em;
+    text-decoration: none;
+  }
+  .nav-logo span { color: #fff; font-style: italic; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: color 0.25s;
+  }
+  .nav-links a:hover { color: var(--amber); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: var(--dark);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 8rem 4rem 4rem 6rem;
+    position: relative; z-index: 2;
+  }
+  .hero-tag {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--amber);
+    border: 1px solid var(--amber);
+    padding: 0.3rem 0.8rem;
+    margin-bottom: 2rem;
+    width: fit-content;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.5rem, 6vw, 5.5rem);
+    font-weight: 900;
+    line-height: 1.0;
+    color: #fff;
+    margin-bottom: 0.3rem;
+  }
+  .hero h1 .italic { font-style: italic; color: var(--amber); }
+  .hero-subtitle {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.55);
+    margin: 1.5rem 0 3rem;
+    line-height: 1.7;
+    max-width: 380px;
+    font-weight: 300;
+  }
+  .hero-rating {
+    display: flex; align-items: center; gap: 1rem;
+    margin-bottom: 3rem;
+  }
+  .stars { color: var(--amber); font-size: 1.1rem; letter-spacing: 2px; }
+  .rating-text { color: rgba(255,255,255,0.6); font-size: 0.85rem; }
+  .rating-num { color: #fff; font-weight: 700; font-size: 1.1rem; }
+  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; align-items: flex-start; }
+  .btn-secondary-wrap { display: flex; flex-direction: column; gap: 0.4rem; }
+  .btn-phone {
+    color: rgba(255,255,255,0.4);
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    text-align: center;
+    font-family: 'Barlow', sans-serif;
+  }
+  .btn-primary {
+    background: var(--amber);
+    color: var(--dark);
+    padding: 0.9rem 2.2rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.25s;
+    border: 2px solid var(--amber);
+  }
+  .btn-primary:hover { background: transparent; color: var(--amber); }
+  .btn-secondary {
+    background: transparent;
+    color: #fff;
+    padding: 0.9rem 2.2rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 2px solid rgba(255,255,255,0.3);
+    transition: all 0.25s;
+  }
+  .btn-secondary:hover { border-color: #fff; }
+
+  .hero-right {
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  .hero-visual {
+    width: 100%; height: 100%;
+    background:
+      radial-gradient(ellipse at 70% 50%, rgba(200,134,42,0.15) 0%, transparent 60%);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .pizza-circle {
+    width: 380px; height: 380px;
+    border-radius: 50%;
+    border: 2px solid rgba(200,134,42,0.3);
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .pizza-circle::before {
+    content: '';
+    position: absolute; inset: 12px;
+    border-radius: 50%;
+    border: 1px dashed rgba(200,134,42,0.2);
+  }
+  @keyframes rotateSlow { to { transform: rotate(360deg); } }
+  .pizza-inner {
+    width: 280px; height: 280px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 40% 35%, #c8862a 0%, #8b4a1a 40%, #3d2b1f 100%);
+    box-shadow: 0 0 80px rgba(200,134,42,0.3);
+    animation: rotateSlow 30s linear infinite reverse;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .pizza-inner::after {
+    content: '🍕';
+    font-size: 5rem;
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.5));
+  }
+  .orbit-wrapper {
+    position: absolute;
+    width: 100%; height: 100%;
+    top: 0; left: 0;
+    transform: rotate(var(--angle));
+    animation: orbitSpin 8s linear infinite;
+  }
+  @keyframes orbitSpin { to { transform: rotate(calc(var(--angle) + 360deg)); } }
+  .orbit-dot {
+    position: absolute;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--amber);
+    box-shadow: 0 0 14px var(--amber), 0 0 4px #fff;
+    top: -6px;
+    left: calc(50% - 6px);
+  }
+
+  .hero-scroll {
+    position: absolute; bottom: 2.5rem; left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255,255,255,0.4);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    animation: bounce 2s ease-in-out infinite;
+  }
+  .hero-scroll::after {
+    content: '↓';
+    font-size: 1rem;
+  }
+  @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(6px)} }
+
+  /* STRIP */
+  .strip {
+    background: var(--amber);
+    padding: 1rem 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .strip-inner {
+    display: inline-flex; gap: 3rem;
+    animation: scrollText 25s linear infinite;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--dark);
+  }
+  .strip-inner span::before { content: '◆ '; }
+  @keyframes scrollText { to { transform: translateX(-50%); } }
+
+  /* SECTION BASE */
+  section { padding: 7rem 6rem; }
+  .section-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 1rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 900;
+    line-height: 1.1;
+    color: var(--dark);
+    margin-bottom: 1.5rem;
+  }
+  .section-title em { font-style: italic; color: var(--red); }
+
+  /* ABOUT */
+  .about {
+    background: var(--light-cream);
+    padding: 7rem 6rem;
+  }
+  .about-text p {
+    color: var(--warm-gray);
+    line-height: 1.8;
+    font-size: 1rem;
+    margin-bottom: 1.2rem;
+    font-weight: 300;
+  }
+  .about-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+    max-width: 700px;
+  }
+  .stat-card {
+    background: var(--dark);
+    padding: 1.8rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .stat-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: var(--amber);
+  }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--amber);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.08em;
+    margin-top: 0.4rem;
+    font-weight: 300;
+  }
+  .about-image-block {
+    position: relative;
+  }
+  .about-img-main {
+    width: 100%; aspect-ratio: 4/5;
+    background: linear-gradient(160deg, #3d2b1f 0%, #1a1410 60%, #2a1800 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 6rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .about-img-main::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(200,134,42,0.03) 20px, rgba(200,134,42,0.03) 21px);
+  }
+  .about-img-badge {
+    position: absolute;
+    bottom: -1.5rem; right: -1.5rem;
+    width: 110px; height: 110px;
+    background: var(--red);
+    border-radius: 50%;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    color: #fff;
+    font-family: 'Playfair Display', serif;
+  }
+  .badge-num { font-size: 1.8rem; font-weight: 900; line-height: 1; }
+  .badge-text { font-size: 0.6rem; letter-spacing: 0.05em; opacity: 0.85; }
+
+  /* MENU */
+  .menu { background: var(--dark); }
+  .menu .section-title { color: #fff; }
+  .menu .section-title em { color: var(--amber); }
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    margin-top: 4rem;
+    background: rgba(255,255,255,0.05);
+  }
+  .menu-cat {
+    background: var(--dark);
+    padding: 2.5rem;
+    transition: background 0.3s;
+    cursor: default;
+  }
+  .menu-cat:hover { background: #231810; }
+  .menu-cat-icon { font-size: 2rem; margin-bottom: 1.2rem; }
+  .menu-cat-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid rgba(200,134,42,0.2);
+  }
+  .menu-items { list-style: none; }
+  .menu-items li {
+    padding: 0.6rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: 1rem;
+  }
+  .menu-item-name {
+    color: rgba(255,255,255,0.8);
+    font-size: 0.9rem;
+    font-weight: 400;
+    line-height: 1.4;
+  }
+  .menu-item-name small {
+    display: block;
+    color: rgba(255,255,255,0.35);
+    font-size: 0.75rem;
+    margin-top: 0.15rem;
+  }
+  .menu-item-price {
+    color: var(--amber);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* REVIEWS */
+  .reviews { background: var(--cream); }
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 4rem;
+  }
+  .review-card {
+    background: #fff;
+    padding: 2rem;
+    border-left: 4px solid var(--amber);
+    position: relative;
+  }
+  .review-quote {
+    font-size: 3rem;
+    line-height: 1;
+    color: var(--amber);
+    opacity: 0.3;
+    font-family: 'Playfair Display', serif;
+    position: absolute;
+    top: 1rem; right: 1.5rem;
+  }
+  .review-text {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--dark);
+    font-style: italic;
+    margin-bottom: 1.5rem;
+  }
+  .review-author {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--warm-gray);
+  }
+  .review-stars { color: var(--amber); font-size: 0.75rem; margin-bottom: 0.4rem; }
+
+  /* INFO */
+  .info {
+    background: var(--brown);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
+  }
+  .info-block {
+    padding: 4rem 3rem;
+    border-right: 1px solid rgba(255,255,255,0.08);
+  }
+  .info-block:last-child { border-right: none; }
+  .info-block-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 1.5rem;
+  }
+  .info-row {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .info-day { color: rgba(255,255,255,0.6); font-size: 0.85rem; font-weight: 300; }
+  .info-time { color: #fff; font-size: 0.85rem; font-family: 'Barlow Condensed', sans-serif; font-weight: 600; }
+  .info-detail {
+    display: flex; align-items: flex-start; gap: 0.8rem;
+    margin-bottom: 1rem;
+  }
+  .info-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 0.1rem; }
+  .info-detail-text { color: rgba(255,255,255,0.65); font-size: 0.88rem; line-height: 1.5; font-weight: 300; }
+  .info-detail-text strong { color: #fff; font-weight: 500; }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark);
+    padding: 3rem 6rem;
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid rgba(200,134,42,0.2);
+  }
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--amber);
+  }
+  .footer-logo span { color: rgba(255,255,255,0.4); font-style: italic; }
+  .footer-copy {
+    color: rgba(255,255,255,0.3);
+    font-size: 0.78rem;
+    letter-spacing: 0.05em;
+  }
+  .footer-phone {
+    color: var(--amber);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+  }
+
+  /* AMENITIES */
+  .amenities {
+    display: flex; flex-wrap: wrap; gap: 0.7rem;
+    margin-top: 2rem;
+  }
+  .amenity {
+    background: rgba(255,255,255,0.07);
+    color: rgba(255,255,255,0.6);
+    font-size: 0.75rem;
+    padding: 0.35rem 0.8rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* DELIVERY */
+  .delivery {
+    background: #0f0c09;
+    padding: 7rem 6rem;
+  }
+  .delivery .section-title em { color: var(--amber); }
+  .delivery-grid {
+    display: flex;
+    gap: 1rem;
+    align-items: stretch;
+  }
+  .delivery-card {
+    display: flex; flex-direction: row; align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    text-decoration: none;
+    transition: transform 0.2s, opacity 0.2s;
+    flex: 1;
+  }
+  .delivery-card:hover { transform: translateY(-2px); opacity: 0.9; }
+  .delivery-wolt { background: #009de0; }
+  .delivery-foodora { background: #d60265; }
+  .delivery-bolt { background: #34d186; }
+  .delivery-logo {
+    font-size: 1.4rem; font-weight: 900;
+    font-family: 'Playfair Display', serif;
+    color: rgba(255,255,255,0.9);
+    line-height: 1;
+    flex-shrink: 0;
+    width: 2rem; text-align: center;
+  }
+  .delivery-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.1rem; font-weight: 700;
+    letter-spacing: 0.05em;
+    color: #fff;
+  }
+  .delivery-desc {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.65);
+    font-weight: 300;
+  }
+  .delivery-text { display: flex; flex-direction: column; gap: 0.15rem; flex: 1; }
+  .delivery-arrow {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.5);
+    transition: transform 0.2s, color 0.2s;
+    flex-shrink: 0;
+  }
+  .delivery-card:hover .delivery-arrow { transform: translateX(4px); color: #fff; }
+
+  @media (max-width: 900px) {
+    .delivery { padding: 4rem 1.5rem; }
+    .delivery-grid { flex-direction: column; }
+  }
+
+  /* TABS */
+  .menu-tabs {
+    display: flex; gap: 1rem;
+    margin-top: 3rem; margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+  }
+  .tab-btn {
+    background: rgba(255,255,255,0.07);
+    border: 2px solid rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.6);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 1rem 2.4rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-radius: 0;
+  }
+  .tab-btn:hover {
+    background: rgba(200,134,42,0.15);
+    border-color: rgba(200,134,42,0.5);
+    color: #fff;
+  }
+  .tab-btn.active {
+    background: var(--amber);
+    border-color: var(--amber);
+    color: var(--dark);
+  }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* PIZZA GRID */
+  .pizza-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+  .pizza-col-head {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--amber);
+    border-bottom: 1px solid rgba(200,134,42,0.25);
+    padding-bottom: 0.6rem;
+    margin-bottom: 0.5rem;
+  }
+  .menu-note {
+    background: rgba(255,255,255,0.04);
+    border-left: 3px solid rgba(200,134,42,0.4);
+    padding: 0.8rem 1rem;
+    color: rgba(255,255,255,0.4);
+    font-size: 0.78rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+  }
+  @media (max-width: 900px) {
+    .pizza-grid { grid-template-columns: 1fr; }
+    .menu-tabs { flex-wrap: wrap; }
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-left > * {
+    animation: fadeUp 0.7s ease both;
+  }
+  .hero-left > *:nth-child(1) { animation-delay: 0.1s; }
+  .hero-left > *:nth-child(2) { animation-delay: 0.2s; }
+  .hero-left > *:nth-child(3) { animation-delay: 0.35s; }
+  .hero-left > *:nth-child(4) { animation-delay: 0.45s; }
+  .hero-left > *:nth-child(5) { animation-delay: 0.55s; }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-left { padding: 7rem 1.5rem 3rem; }
+    .hero-right { display: none; }
+    section { padding: 4rem 1.5rem; }
+    .about { grid-template-columns: 1fr; gap: 3rem; }
+    .menu-grid { grid-template-columns: 1fr; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .info { grid-template-columns: 1fr; }
+    .info-block { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">U <span>Schwarzů</span></a>
+  <ul class="nav-links">
+    <li><a href="#o-nas">O nás</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#recenze">Recenze</a></li>
+    <li><a href="#info">Kontakt</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <div class="hero-tag">Restaurace & Pizzerie · Brno-Řečkovice</div>
+    <h1>U<br><span class="italic">Schwarzů</span></h1>
+    <p class="hero-subtitle">Poctivá česká kuchyně a ručně tahaná pizza v srdci Řečkovic. Domácí atmosféra, férové ceny.</p>
+    <div class="hero-rating">
+      <span class="stars">★★★★★</span>
+      <span class="rating-num">4,4</span>
+      <span class="rating-text">/ 5 · Google hodnocení</span>
+    </div>
+    <div class="hero-cta">
+      <a href="#menu" class="btn-primary" onclick="event.preventDefault();document.getElementById('menu').scrollIntoView({behavior:'smooth'})">Prohlédnout menu</a>
+      <div class="btn-secondary-wrap">
+        <a href="tel:+420728246221" class="btn-secondary">Rezervace</a>
+        <span class="btn-phone">+420 728 246 221</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-visual">
+      <div class="pizza-circle">
+        <div class="orbit-wrapper" style="--angle:0deg">  <div class="orbit-dot"></div></div>
+        <div class="orbit-wrapper" style="--angle:90deg"> <div class="orbit-dot"></div></div>
+        <div class="orbit-wrapper" style="--angle:180deg"><div class="orbit-dot"></div></div>
+        <div class="orbit-wrapper" style="--angle:270deg"><div class="orbit-dot"></div></div>
+        <div class="pizza-inner"></div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">Scrollovat</div>
+</section>
+
+<!-- STRIP -->
+<div class="strip">
+  <div class="strip-inner">
+    <span>Ručně tahaná pizza</span><span>Česká klasika</span><span>Starobrno · Polička · Bernard</span>
+    <span>Rozvoz Wolt & Foodora</span><span>Zahrádka</span><span>Dog-friendly</span>
+    <span>Kapacita 70 osob</span><span>Soukromé salonky</span>
+    <span>Ručně tahaná pizza</span><span>Česká klasika</span><span>Starobrno · Polička · Bernard</span>
+    <span>Rozvoz Wolt & Foodora</span><span>Zahrádka</span><span>Dog-friendly</span>
+    <span>Kapacita 70 osob</span><span>Soukromé salonky</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="o-nas">
+  <div class="about-text">
+    <div class="section-label">Náš příběh</div>
+    <h2 class="section-title">Lokální podnik<br>s <em>duší</em></h2>
+    <p>Restaurace U Schwarzů je oblíbeným místem setkávání v brněnských Řečkovicích. Kombinujeme osvědčenou českou kuchyni se širokou nabídkou pizzy — vše připravované poctivě, s důrazem na kvalitu a rozumné ceny.</p>
+    <p>Náš podnik je ideálním místem pro rodinné oslavy, firemní večírky i neformální posezení s přáteli. Vítáme také čtyřnohé hosty — jsme hrdě dog-friendly.</p>
+    <div class="about-stats">
+      <div class="stat-card">
+        <div class="stat-num">20+</div>
+        <div class="stat-label">druhů pizzy</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">70</div>
+        <div class="stat-label">míst k sezení</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">4,4</div>
+        <div class="stat-label">hodnocení Google</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">3</div>
+        <div class="stat-label">soukromé salonky</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DELIVERY -->
+<section class="delivery" id="rozvoz">
+  <div class="section-label">Jídlo přímo k vám</div>
+  <h2 class="section-title" style="color:#fff;">Objednávejte <em>online</em></h2>
+  <p style="color:rgba(255,255,255,0.45);font-size:1rem;font-weight:300;line-height:1.7;max-width:500px;margin-bottom:3.5rem;">Pizzu a burgery dovezeme až k vám domů. Vyberte si platformu a objednejte pár kliknutími.</p>
+  <div class="delivery-grid">
+    <a class="delivery-card delivery-wolt" href="https://wolt.com/cs/cze/brno/restaurant/u-schwarzu" target="_blank" rel="noopener">
+      <div class="delivery-logo">W</div>
+      <div class="delivery-text">
+        <div class="delivery-name">Wolt</div>
+        <div class="delivery-desc">Rychlé doručení · sledování v reálném čase</div>
+      </div>
+      <div class="delivery-arrow">→</div>
+    </a>
+    <a class="delivery-card delivery-foodora" href="https://www.foodora.cz/restaurant/a3uu/u-schwarzu-restaurace-and-pizzerie" target="_blank" rel="noopener">
+      <div class="delivery-logo">f</div>
+      <div class="delivery-text">
+        <div class="delivery-name">Foodora</div>
+        <div class="delivery-desc">Oblíbená platforma pro rozvoz jídla</div>
+      </div>
+      <div class="delivery-arrow">→</div>
+    </a>
+    <a class="delivery-card delivery-bolt" href="https://food.bolt.eu/cs-cz/456-brno/p/132654-u-schwarzu-restaurace/?utm_content=menu_header&utm_medium=product&utm_source=share_provider" target="_blank" rel="noopener">
+      <div class="delivery-logo">⚡</div>
+      <div class="delivery-text">
+        <div class="delivery-name">Bolt Food</div>
+        <div class="delivery-desc">Vyhledejte nás v aplikaci Bolt Food</div>
+      </div>
+      <div class="delivery-arrow">→</div>
+    </a>
+  </div>
+  <p style="color:rgba(255,255,255,0.2);font-size:0.78rem;margin-top:2rem;letter-spacing:0.05em;">Objednávky přijímáme do 21:45 hod. · Pizza 33 cm ručně tahaná</p>
+</section>
+
+<!-- MENU -->
+<section class="menu" id="menu">
+  <div class="section-label" style="color:var(--amber)">Jídelní &amp; nápojový lístek</div>
+  <h2 class="section-title">Naše <em>menu</em></h2>
+
+  <!-- Tab buttons -->
+  <div class="menu-tabs">
+    <button class="tab-btn active" onclick="showTab('pizza')">🍕 Pizza</button>
+    <button class="tab-btn" onclick="showTab('jidlo')">🥩 Jídlo</button>
+    <button class="tab-btn" onclick="showTab('napoje')">🍺 Nápoje</button>
+  </div>
+
+  <!-- PIZZA TAB -->
+  <div class="tab-content active" id="tab-pizza">
+    <div class="menu-note">Všechny pizzy 33 cm · ručně tahané. Malá pizza (∅28 cm) o 15 Kč levnější. Krabice 10 Kč. Objednávky do 21:45.</div>
+    <div class="pizza-grid">
+      <div class="pizza-col">
+        <div class="pizza-col-head">Rajčatový základ</div>
+        <ul class="menu-items">
+          <li><div class="menu-item-name">Margherita<small>tomato, mozzarella, bazalka</small></div><span class="menu-item-price">170 Kč</span></li>
+          <li><div class="menu-item-name">Žampionová<small>tomato, mozzarella, žampiony, oregano</small></div><span class="menu-item-price">180 Kč</span></li>
+          <li><div class="menu-item-name">Šunková<small>tomato, mozzarella, šunka, oregano</small></div><span class="menu-item-price">185 Kč</span></li>
+          <li><div class="menu-item-name">Špenátová<small>tomato, mozzarella, špenát, česnek, oregano</small></div><span class="menu-item-price">185 Kč</span></li>
+          <li><div class="menu-item-name">Salámová<small>tomato, mozzarella, salám, oregano</small></div><span class="menu-item-price">190 Kč</span></li>
+          <li><div class="menu-item-name">Vegetariana<small>tomato, mozz., cibule, kukuřice, žampiony, olivy, b. rohy</small></div><span class="menu-item-price">195 Kč</span></li>
+          <li><div class="menu-item-name">Hawaii<small>tomato, mozzarella, šunka, ananas, oregano</small></div><span class="menu-item-price">200 Kč</span></li>
+          <li><div class="menu-item-name">Toscana<small>tomato, gouda, šunka, žampiony, oregano</small></div><span class="menu-item-price">200 Kč</span></li>
+          <li><div class="menu-item-name">Tuňáková<small>tomato, mozzarella, tuňák, vejce, cibule, oregano</small></div><span class="menu-item-price">200 Kč</span></li>
+          <li><div class="menu-item-name">Maďarská<small>tomato, gouda, klobása, cibule, beraní rohy, oregano</small></div><span class="menu-item-price">200 Kč</span></li>
+          <li><div class="menu-item-name">Selská<small>tomato, gouda, slanina, cibule, oregano</small></div><span class="menu-item-price">200 Kč</span></li>
+          <li><div class="menu-item-name">Diavola 🌶️<small>tomato, mozzarella, salám, cibule, jalapeños, oregano</small></div><span class="menu-item-price">210 Kč</span></li>
+          <li><div class="menu-item-name">Provence<small>tomato, gouda, šunka, slanina, jalapeños, oregano</small></div><span class="menu-item-price">210 Kč</span></li>
+          <li><div class="menu-item-name">Rusticana<small>tomato, gouda, slanina, žampiony, olivy, vejce, oregano</small></div><span class="menu-item-price">215 Kč</span></li>
+          <li><div class="menu-item-name">Erotika ⭐<small>tomato, gouda, šunka, vejce, klobása, oregano</small></div><span class="menu-item-price">215 Kč</span></li>
+          <li><div class="menu-item-name">Quattro Formaggi<small>tomato, gouda, mozzarella, niva, hermelín, oregano</small></div><span class="menu-item-price">220 Kč</span></li>
+          <li><div class="menu-item-name">Olomoucká<small>tomato, gouda, salám, tvarůžky, cibule, oregano</small></div><span class="menu-item-price">220 Kč</span></li>
+          <li><div class="menu-item-name">Al Capone<small>tomato, gouda, šunka, salám, žampiony, cibule, oregano</small></div><span class="menu-item-price">220 Kč</span></li>
+          <li><div class="menu-item-name">Mexicana 🌶️<small>tomato, gouda, salám, slanina, kukuřice, cibule, česnek, jalapeños</small></div><span class="menu-item-price">220 Kč</span></li>
+          <li><div class="menu-item-name">Quattro Stagioni<small>tomato, mozz., šunka, žampiony, hermelín, slanina</small></div><span class="menu-item-price">220 Kč</span></li>
+          <li><div class="menu-item-name">Duo Colore<small>tomato/smetana, gouda, slanina, niva, cibule, olivy</small></div><span class="menu-item-price">230 Kč</span></li>
+          <li><div class="menu-item-name">BBQ Kuřecí<small>tomato, mozz., šunka, kuřecí maso, cibule, žampiony, BBQ</small></div><span class="menu-item-price">230 Kč</span></li>
+          <li><div class="menu-item-name">BBQ Burger Pizza<small>tomato, gouda, slanina, hovězí maso, cibule, jalapeños, BBQ</small></div><span class="menu-item-price">235 Kč</span></li>
+        </ul>
+      </div>
+      <div class="pizza-col">
+        <div class="pizza-col-head">Smetanový základ</div>
+        <ul class="menu-items">
+          <li><div class="menu-item-name">Pollo<small>smetana, mozzarella, kuřecí maso, špenát, oregano</small></div><span class="menu-item-price">215 Kč</span></li>
+          <li><div class="menu-item-name">Loštická<small>smetana, mozzarella, šunka, tvarůžky, cibule, oregano</small></div><span class="menu-item-price">220 Kč</span></li>
+          <li><div class="menu-item-name">Giovani<small>smetana, mozzarella, šunka, cibule, niva, česnek, oregano</small></div><span class="menu-item-price">220 Kč</span></li>
+          <li><div class="menu-item-name">Mario<small>smetana, mozz., slanina, špenát, česnek, vejce, oregano</small></div><span class="menu-item-price">225 Kč</span></li>
+          <li><div class="menu-item-name">Americana<small>smetana, mozz., šunka, kuřecí maso, kukuřice, oregano</small></div><span class="menu-item-price">230 Kč</span></li>
+        </ul>
+        <div class="pizza-col-head" style="margin-top:2rem;">Ingredience navíc</div>
+        <ul class="menu-items">
+          <li><div class="menu-item-name">Česnekové okraje</div><span class="menu-item-price">10 Kč</span></li>
+          <li><div class="menu-item-name">Kukuřice, ananas, vejce, olivy, žampiony, špenát, b. rohy, jalapeños</div><span class="menu-item-price">15 Kč</span></li>
+          <li><div class="menu-item-name">Salám, šunka, slanina, kuřecí, hovězí, niva, gouda, mozz., hermelín, tvarůžky</div><span class="menu-item-price">30 Kč</span></li>
+        </ul>
+        <div class="menu-note" style="margin-top:1.5rem;">Při kombinaci dvou pizz účtujeme dražší. Na stravenky nevracíme. Pizzy mohou obsahovat alergeny: obiloviny, vejce, ryby, mléko.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JÍDLO TAB -->
+  <div class="tab-content" id="tab-jidlo">
+    <div class="menu-grid" style="margin-top:0;">
+      <div class="menu-cat">
+        <div class="menu-cat-icon">🥒</div>
+        <div class="menu-cat-title">Předkrmy & speciality k pivu</div>
+        <ul class="menu-items">
+          <li><div class="menu-item-name">Utopenec<small>120g · beraní roh, chleba</small></div><span class="menu-item-price">80 Kč</span></li>
+          <li><div class="menu-item-name">Tvarůžkový chleba<small>1 ks</small></div><span class="menu-item-price">65 Kč</span></li>
+          <li><div class="menu-item-name">Nakládaný hermelín<small>120g · beraní roh, chleba</small></div><span class="menu-item-price">115 Kč</span></li>
+          <li><div class="menu-item-name">Topinka s masovou směsí a sýrem<small>1 ks</small></div><span class="menu-item-price">130 Kč</span></li>
+          <li><div class="menu-item-name">Topinka „Olomoucká"<small>1 ks · tvarůžky, cibule</small></div><span class="menu-item-price">75 Kč</span></li>
+          <li><div class="menu-item-name">Karpatská klobása<small>150g · hořčice, křen, b. roh, chleba</small></div><span class="menu-item-price">110 Kč</span></li>
+          <li><div class="menu-item-name">Grilovaný hermelín<small>120g · brusinky, pečivo</small></div><span class="menu-item-price">120 Kč</span></li>
+        </ul>
+      </div>
+      <div class="menu-cat">
+        <div class="menu-cat-icon">🍲</div>
+        <div class="menu-cat-title">Polévka &amp; Hotové jídlo</div>
+        <ul class="menu-items">
+          <li><div class="menu-item-name">Hovězí vývar<small>0,33 l · játrové knedlíčky, nudle</small></div><span class="menu-item-price">55 Kč</span></li>
+          <li style="margin-top:0.8rem; padding-top:0.8rem; border-top:1px solid rgba(255,255,255,0.08)"><div class="menu-item-name">Hovězí guláš<small>150g · cibule, jalapeños, chleba</small></div><span class="menu-item-price">155 Kč</span></li>
+        </ul>
+        <div class="menu-cat-icon" style="margin-top:1.5rem;">🥩</div>
+        <div class="menu-cat-title">Hlavní jídla</div>
+        <ul class="menu-items">
+          <li><div class="menu-item-name">Přírodní kuřecí prsa<small>150g</small></div><span class="menu-item-price">150 Kč</span></li>
+          <li><div class="menu-item-name">Kuřecí prsa zapečená šunkou a sýrem<small>150g</small></div><span class="menu-item-price">170 Kč</span></li>
+          <li><div class="menu-item-name">Smažený kuřecí řízek<small>150g</small></div><span class="menu-item-price">160 Kč</span></li>
+          <li><div class="menu-item-name">Kuřecí medailonky s nivou<small>150g</small></div><span class="menu-item-price">180 Kč</span></li>
+          <li><div class="menu-item-name">Vepřový plátek na žampionech<small>150g</small></div><span class="menu-item-price">160 Kč</span></li>
+          <li><div class="menu-item-name">Vepřový plátek poličan + hermelín<small>150g · zapečený</small></div><span class="menu-item-price">170 Kč</span></li>
+          <li><div class="menu-item-name">Smažený vepřový řízek<small>150g</small></div><span class="menu-item-price">160 Kč</span></li>
+          <li><div class="menu-item-name">Smažený sýr<small>130g</small></div><span class="menu-item-price">150 Kč</span></li>
+          <li><div class="menu-item-name">Smažený hermelín<small>120g</small></div><span class="menu-item-price">160 Kč</span></li>
+          <li><div class="menu-item-name">Smažené tvarůžky v poličanu<small>4 ks · beraní roh, cibule</small></div><span class="menu-item-price">170 Kč</span></li>
+        </ul>
+      </div>
+      <div class="menu-cat">
+        <div class="menu-cat-icon">🍔</div>
+        <div class="menu-cat-title">Burgery (s hranolky)</div>
+        <ul class="menu-items">
+          <li><div class="menu-item-name">Hovězí burger<small>150g · salát, cibule, okurek, sýr, rajče, dressing</small></div><span class="menu-item-price">200 Kč</span></li>
+          <li><div class="menu-item-name">Hovězí burger se slaninou a vejcem<small>150g · + slanina, vejce</small></div><span class="menu-item-price">230 Kč</span></li>
+          <li><div class="menu-item-name">Kuřecí burger<small>150g · salát, kuřecí plátek, sýr, rajče, dressing</small></div><span class="menu-item-price">200 Kč</span></li>
+          <li><div class="menu-item-name">Ingredience navíc<small>jalapeños, vejce, gouda, slanina</small></div><span class="menu-item-price">+ 20 Kč</span></li>
+        </ul>
+        <div class="menu-cat-icon" style="margin-top:1.5rem;">🦴</div>
+        <div class="menu-cat-title">Speciality</div>
+        <ul class="menu-items">
+          <li><div class="menu-item-name">Vepřová žebra BBQ ⭐<small>600g · chleba, b. rohy, křen, hořčice</small></div><span class="menu-item-price">550 Kč</span></li>
+          <li><div class="menu-item-name">MIX miniřízků<small>600g · okurek, beraní rohy, chleba</small></div><span class="menu-item-price">250 Kč</span></li>
+        </ul>
+        <div class="menu-cat-icon" style="margin-top:1.5rem;">🥔</div>
+        <div class="menu-cat-title">Přílohy &amp; Omáčky</div>
+        <ul class="menu-items">
+          <li><div class="menu-item-name">Vařené brambory<small>250g</small></div><span class="menu-item-price">45 Kč</span></li>
+          <li><div class="menu-item-name">Hranolky<small>200g</small></div><span class="menu-item-price">45 Kč</span></li>
+          <li><div class="menu-item-name">Americké brambory<small>250g</small></div><span class="menu-item-price">55 Kč</span></li>
+          <li><div class="menu-item-name">Kečup / Hořčice<small>50g</small></div><span class="menu-item-price">20 Kč</span></li>
+          <li><div class="menu-item-name">Tatarská omáčka<small>50g</small></div><span class="menu-item-price">25 Kč</span></li>
+          <li><div class="menu-item-name">BBQ omáčka<small>50g</small></div><span class="menu-item-price">20 Kč</span></li>
+          <li><div class="menu-item-name">Box na jídlo s sebou</div><span class="menu-item-price">10 Kč</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="menu-note" style="margin-top:2rem;">Gramáž je uváděna v syrovém stavu. U polovičních porcí účtujeme 70 % z ceny. Alergeny na vyžádání u obsluhy.</div>
+  </div>
+
+  <!-- NÁPOJE TAB -->
+  <div class="tab-content" id="tab-napoje">
+    <div class="menu-grid" style="margin-top:0;">
+      <div class="menu-cat">
+        <div class="menu-cat-icon">🍺</div>
+        <div class="menu-cat-title">Čepovaná piva</div>
+        <ul class="menu-items">
+          <li><div class="menu-item-name">Starobrno 11° Medium<small>0,3 l</small></div><span class="menu-item-price">34 Kč</span></li>
+          <li><div class="menu-item-name">Starobrno 11° Medium<small>0,5 l</small></div><span class="menu-item-price">46 Kč</span></li>
+          <li><div class="menu-item-name">Polička 12° Záviš<small>0,3 l</small></div><span class="menu-item-price">34 Kč</span></li>
+          <li><div class="menu-item-name">Polička 12° Záviš<small>0,5 l</small></div><span class="menu-item-price">46 Kč</span></li>
+          <li><div class="menu-item-name">Bernard 11°<small>0,3 l</small></div><span class="menu-item-price">38 Kč</span></li>
+          <li><div class="menu-item-name">Bernard 11°<small>0,5 l</small></div><span class="menu-item-price">50 Kč</span></li>
+        </ul>
+        <div class="menu-cat-icon" style="margin-top:1.5rem;">🍶</div>
+        <div class="menu-cat-title">Lahvová piva</div>
+        <ul class="menu-items">
+          <li><div class="menu-item-name">Starobrno Medium<small>0,5 l</small></div><span class="menu-item-price">35 Kč</span></li>
+          <li><div class="menu-item-name">Krušovice — královský hořké N/A<small>0,5 l</small></div><span class="menu-item-price">45 Kč</span></li>
+          <li><div class="menu-item-name">Plzeň 12°<small>0,5 l</small></div><span class="menu-item-price">50 Kč</span></li>
+          <li><div class="menu-item-name">Rádler — plech (více druhů)<small>0,5 l</small></div><span class="menu-item-price">45 Kč</span></li>
+          <li><div class="menu-item-name">Strongbow Gold Apple — plech<small>0,44 l</small></div><span class="menu-item-price">50 Kč</span></li>
+        </ul>
+      </div>
+      <div class="menu-cat">
+        <div class="menu-cat-icon">🍷</div>
+        <div class="menu-cat-title">Vína</div>
+        <ul class="menu-items">
+          <li><div class="menu-item-name">Sudové bílé — Chardonnay<small>0,1 l / 0,2 l</small></div><span class="menu-item-price">25 / 50 Kč</span></li>
+          <li><div class="menu-item-name">Sudové červené — dle nabídky<small>0,1 l / 0,2 l</small></div><span class="menu-item-price">25 / 50 Kč</span></li>
+          <li><div class="menu-item-name">Secco bianco — plech<small>0,2 l</small></div><span class="menu-item-price">50 Kč</span></li>
+          <li><div class="menu-item-name">Chardonnay / Sauvignon — pozdní sběr<small>0,75 l</small></div><span class="menu-item-price">250 Kč</span></li>
+          <li><div class="menu-item-name">Ryzlink Rýnský / Rulandské bílé<small>0,75 l · pozdní sběr</small></div><span class="menu-item-price">250 Kč</span></li>
+          <li><div class="menu-item-name">Zweigeltrebe — pozdní sběr<small>0,75 l</small></div><span class="menu-item-price">250 Kč</span></li>
+        </ul>
+        <div class="menu-cat-icon" style="margin-top:1.5rem;">🧃</div>
+        <div class="menu-cat-title">Nealko nápoje</div>
+        <ul class="menu-items">
+          <li><div class="menu-item-name">Točená limonáda<small>0,3 l / 0,5 l</small></div><span class="menu-item-price">30 / 40 Kč</span></li>
+          <li><div class="menu-item-name">Kofola original PET<small>0,5 l</small></div><span class="menu-item-price">40 Kč</span></li>
+          <li><div class="menu-item-name">Orangina PET<small>0,5 l</small></div><span class="menu-item-price">40 Kč</span></li>
+          <li><div class="menu-item-name">Rauch (jahoda, jablko, pomeranč)<small>0,2 l</small></div><span class="menu-item-price">50 Kč</span></li>
+          <li><div class="menu-item-name">Royal Crown Cola — plech<small>0,33 l</small></div><span class="menu-item-price">50 Kč</span></li>
+          <li><div class="menu-item-name">Tonic Targa Florio<small>0,25 l</small></div><span class="menu-item-price">45 Kč</span></li>
+          <li><div class="menu-item-name">Vinea<small>0,25 l</small></div><span class="menu-item-price">45 Kč</span></li>
+          <li><div class="menu-item-name">Rájec (perlivý / jemně / neperlivý)<small>0,33 l</small></div><span class="menu-item-price">25 Kč</span></li>
+          <li><div class="menu-item-name">Semtex<small>0,25 l</small></div><span class="menu-item-price">40 Kč</span></li>
+          <li><div class="menu-item-name">Džbán vody s citronem<small>1 l</small></div><span class="menu-item-price">25 Kč</span></li>
+        </ul>
+      </div>
+      <div class="menu-cat">
+        <div class="menu-cat-icon">🥃</div>
+        <div class="menu-cat-title">Rumy & Lihoviny</div>
+        <ul class="menu-items">
+          <li><div class="menu-item-name">Republica Božkov<small>0,02 / 0,04 l</small></div><span class="menu-item-price">28 / 55 Kč</span></li>
+          <li><div class="menu-item-name">Hefron Original<small>0,02 / 0,04 l</small></div><span class="menu-item-price">28 / 55 Kč</span></li>
+          <li><div class="menu-item-name">Legendario Elixír 7Y (Cuba)<small>0,02 / 0,04 l</small></div><span class="menu-item-price">35 / 70 Kč</span></li>
+          <li><div class="menu-item-name">Espero Caribbean Orange<small>0,02 / 0,04 l</small></div><span class="menu-item-price">40 / 80 Kč</span></li>
+          <li><div class="menu-item-name">Doorly's X.O.<small>0,02 / 0,04 l</small></div><span class="menu-item-price">50 / 100 Kč</span></li>
+          <li><div class="menu-item-name">Diplomatico Reserva Exclusiva 12YO<small>0,02 / 0,04 l</small></div><span class="menu-item-price">50 / 100 Kč</span></li>
+        </ul>
+        <div class="menu-cat-icon" style="margin-top:1.5rem;">🫙</div>
+        <div class="menu-cat-title">Destiláty</div>
+        <ul class="menu-items">
+          <li><div class="menu-item-name">Božkov Pepermint / Tuzemský<small>0,02 / 0,04 l</small></div><span class="menu-item-price">23 / 45 Kč</span></li>
+          <li><div class="menu-item-name">Bylinná hořká<small>0,02 / 0,04 l</small></div><span class="menu-item-price">23 / 45 Kč</span></li>
+          <li><div class="menu-item-name">Fernet Stock<small>0,02 / 0,04 l</small></div><span class="menu-item-price">25 / 50 Kč</span></li>
+          <li><div class="menu-item-name">Vodka Finlandia<small>0,02 / 0,04 l</small></div><span class="menu-item-price">28 / 55 Kč</span></li>
+          <li><div class="menu-item-name">Becherovka<small>0,02 / 0,04 l</small></div><span class="menu-item-price">25 / 50 Kč</span></li>
+          <li><div class="menu-item-name">Slivovice<small>0,02 / 0,04 l</small></div><span class="menu-item-price">30 / 60 Kč</span></li>
+          <li><div class="menu-item-name">Gin Beefeater<small>0,02 / 0,04 l</small></div><span class="menu-item-price">30 / 60 Kč</span></li>
+          <li><div class="menu-item-name">Jägermeister<small>0,02 / 0,04 l</small></div><span class="menu-item-price">30 / 60 Kč</span></li>
+          <li><div class="menu-item-name">Tullamore<small>0,02 / 0,04 l</small></div><span class="menu-item-price">30 / 60 Kč</span></li>
+        </ul>
+        <div class="menu-cat-icon" style="margin-top:1.5rem;">☕</div>
+        <div class="menu-cat-title">Teplé nápoje</div>
+        <ul class="menu-items">
+          <li><div class="menu-item-name">Čaj (ovocný / černý / zelený)<small>5g · cukr, citron</small></div><span class="menu-item-price">40 Kč</span></li>
+          <li><div class="menu-item-name">Káva turecká<small>10g · cukr</small></div><span class="menu-item-price">40 Kč</span></li>
+          <li><div class="menu-item-name">Espresso / Espresso Piccolo (LAVAZZA)<small>8g · cukr</small></div><span class="menu-item-price">45 Kč</span></li>
+          <li><div class="menu-item-name">Smetana do kávy<small>10g</small></div><span class="menu-item-price">3 Kč</span></li>
+          <li><div class="menu-item-name">Grog<small>0,2 l · 4cl rum, cukr, citron</small></div><span class="menu-item-price">60 Kč</span></li>
+          <li><div class="menu-item-name">Svařené víno<small>0,2 l · cukr, citron</small></div><span class="menu-item-price">60 Kč</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews" id="recenze">
+  <div class="section-label">Co říkají hosté</div>
+  <h2 class="section-title">Recenze <em>zákazníků</em></h2>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="review-quote">"</div>
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">Opravdu vynikající pizza, velmi příjemná obsluha, uvolněná atmosféra. Mohu doporučit všem, kteří hledají dobré jídlo bez zbytečného přehánění cen.</p>
+      <div class="review-author">Spokojený zákazník · Google</div>
+    </div>
+    <div class="review-card">
+      <div class="review-quote">"</div>
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">Tentokrát žebra — ta byla dobře udělená, marináda normální dobrá a cena nepřemrštěná. Obsluha rychlá, pivo vždy dobré. Určitě se vrátím.</p>
+      <div class="review-author">Tomáš Polášek · Google</div>
+    </div>
+    <div class="review-card">
+      <div class="review-quote">"</div>
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">Příjemný podnik a pochutnala jsem si. Domácká atmosféra, milá obsluha. Přesně to místo, kam se chcete vracet po práci nebo s rodinou o víkendu.</p>
+      <div class="review-author">Pavouk250 · Google</div>
+    </div>
+  </div>
+</section>
+
+<!-- INFO -->
+<section class="info" id="info" style="padding: 0;">
+  <div class="info-block">
+    <div class="info-block-title">🕐 Otevírací doba</div>
+    <div class="info-row"><span class="info-day">Pondělí – Čtvrtek</span><span class="info-time">12:00 – 23:00</span></div>
+    <div class="info-row"><span class="info-day">Pátek – Sobota</span><span class="info-time">12:00 – 24:00</span></div>
+    <div class="info-row"><span class="info-day">Neděle</span><span class="info-time">12:00 – 22:00</span></div>
+    <div class="amenities">
+      <span class="amenity">🐕 Dog-friendly</span>
+      <span class="amenity">♿ Bezbariérový vstup</span>
+      <span class="amenity">📺 Sport TV</span>
+      <span class="amenity">🌿 Zahrádka</span>
+      <span class="amenity">📶 Wi-Fi</span>
+      <span class="amenity">🅿️ Parkování zdarma</span>
+    </div>
+  </div>
+
+  <div class="info-block">
+    <div class="info-block-title">📍 Kde nás najdete</div>
+    <div class="info-detail">
+      <span class="info-icon">📌</span>
+      <div class="info-detail-text"><strong>Renčova 32a</strong><br>621 00 Brno-Řečkovice</div>
+    </div>
+    <div class="info-detail">
+      <span class="info-icon">📞</span>
+      <div class="info-detail-text"><strong>+420 728 246 221</strong></div>
+    </div>
+    <div class="info-detail">
+      <span class="info-icon">👥</span>
+      <div class="info-detail-text">Kapacita <strong>70 osob</strong><br>3 oddělené místnosti</div>
+    </div>
+    <div class="info-detail">
+      <span class="info-icon">🎉</span>
+      <div class="info-detail-text">Rodinné oslavy, firemní akce,<br>neformální posezení</div>
+    </div>
+  </div>
+
+  <div class="info-block">
+    <div class="info-block-title">🛵 Rozvoz jídla</div>
+    <p style="color:rgba(255,255,255,0.45);font-size:0.82rem;margin-bottom:1.5rem;font-weight:300;line-height:1.5;">Objednávejte pizzu a burgery přes naše partnery. Doručení přímo k vám domů.</p>
+    <a href="https://wolt.com/cs/cze/brno/restaurant/u-schwarzu" target="_blank" rel="noopener"
+      style="display:flex;align-items:center;gap:1rem;background:#009de0;color:#fff;padding:1rem 1.5rem;text-decoration:none;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;letter-spacing:0.08em;margin-bottom:0.7rem;transition:opacity 0.2s;"
+      onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+      <span style="font-size:1.3rem;">🔵</span> Objednat přes Wolt
+    </a>
+    <a href="https://www.foodora.cz/restaurant/s9wf/u-schwarzu" target="_blank" rel="noopener"
+      style="display:flex;align-items:center;gap:1rem;background:#d60265;color:#fff;padding:1rem 1.5rem;text-decoration:none;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;letter-spacing:0.08em;margin-bottom:1.5rem;transition:opacity 0.2s;"
+      onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+      <span style="font-size:1.3rem;">🩷</span> Objednat přes Foodoru
+    </a>
+    <div style="color:rgba(255,255,255,0.3);font-size:0.75rem;letter-spacing:0.06em;border-top:1px solid rgba(255,255,255,0.07);padding-top:1rem;">Objednávky přijímáme do 21:45 hod.</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">U <span>Schwarzů</span></div>
+  <div class="footer-copy">© 2025 Restaurace & Pizzerie U Schwarzů · Renčova 32a, Brno-Řečkovice</div>
+  <a href="tel:+420728246221" class="footer-phone">+420 728 246 221</a>
+</footer>
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>
